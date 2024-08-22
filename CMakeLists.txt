@@ -4,4 +4,5 @@ project(Elaborato12)
 set(CMAKE_CXX_STANDARD 17)
 
 add_executable(Elaborato12 main.cpp
-        Observer.h)
+        Observer.h
+        Subject.cpp)
