@@ -35,3 +35,16 @@ void List::ListItems() const {
 std::string List::GetListName() const{
     return name;
 }
+void List::attach(std::shared_ptr<Observer> observer) {
+    observers.push_back(observer);
+}
+
+void List::detach(std::shared_ptr<Observer> observer) {
+    observers.erase(std::remove(observers.begin(), observers.end(), observer), observers.end());
+}
+
+void List::notify() {
+    for (const auto& observer : observers) {
+        observer->update();
+    }
+}

@@ -8,12 +8,14 @@
 #include "Item.h"
 #include <vector>
 #include <memory>
+#include "Subject.h"
+#include "Observer.h"
 
-
-class List{
+class List: public Subject{
 private:
     std::vector<Item> items;
     std::string name;
+    std::vector<std::shared_ptr<Observer>> observers;
 public:
     List(const std::string&listname ):name(listname){};
     void AddItem(const Item& item);
@@ -21,6 +23,9 @@ public:
     void UpdateItemQuantity(const std::string& itemName, int quantity);
     void ListItems() const;
     std::string GetListName()const;
+    void attach(std::shared_ptr<Observer> observer) override;
+    void detach(std::shared_ptr<Observer> observer) override;
+    void notify() override;
 };
 
 #endif //ELABORATO12_LIST_H
