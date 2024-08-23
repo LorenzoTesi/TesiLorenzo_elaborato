@@ -43,3 +43,7 @@ std::shared_ptr<List> User::GetList(const std::string& listName) const {
 std::string User::GetName() const{
     return name;
 }
+void User::update(const std::string& listname)const{
+
+
+}

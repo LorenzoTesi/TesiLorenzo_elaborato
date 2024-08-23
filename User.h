@@ -11,10 +11,12 @@
 #include "List.h"
 
 
-class User {
+
+class User{
 private:
     std::string name;
     std::map<std::string, std::shared_ptr<List>> lists;
+
 
 public:
     User(const std::string& name) : name(name) {}
@@ -29,6 +31,7 @@ public:
     std::shared_ptr<List> GetList(const std::string& listName) const;
 
     std::string GetName() const;
+    void update(const std::string& listname) const;
 };
 
 #endif //ELABORATO12_USER_H
