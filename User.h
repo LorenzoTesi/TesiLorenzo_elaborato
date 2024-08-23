@@ -31,7 +31,7 @@ public:
     std::shared_ptr<List> GetList(const std::string& listName) const;
 
     std::string GetName() const;
-    void update(const std::string& listname) const;
+    void update(std::shared_ptr<List> list) const;
 };
 
 #endif //ELABORATO12_USER_H

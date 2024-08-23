@@ -43,7 +43,9 @@ std::shared_ptr<List> User::GetList(const std::string& listName) const {
 std::string User::GetName() const{
     return name;
 }
-void User::update(const std::string& listname)const{
-
+void User::update(std::shared_ptr<List> list)const{
+    std::cout<<"La lista: "<<list->GetListName()<<" è stata modificata, ora è:"<<std::endl;
+    std::cout<<"Oggetti da comprare: "<<list->GetTotalItems()<<std::endl;
+    list->ListItems();
 
 }

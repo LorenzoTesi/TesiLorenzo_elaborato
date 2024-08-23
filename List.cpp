@@ -7,7 +7,7 @@
 
 void List::notify() {
     for (const auto& itr : observers) {
-        itr->update(this->GetListName());
+        itr->update(this);
     }
 }
 void List::AddItem(const Item& item) {
