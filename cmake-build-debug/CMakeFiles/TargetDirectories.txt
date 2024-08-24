@@ -1,3 +1,0 @@
-C:/Users/loren/OneDrive/Desktop/Elaborato12/cmake-build-debug/CMakeFiles/Elaborato12.dir
-C:/Users/loren/OneDrive/Desktop/Elaborato12/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/loren/OneDrive/Desktop/Elaborato12/cmake-build-debug/CMakeFiles/rebuild_cache.dir
