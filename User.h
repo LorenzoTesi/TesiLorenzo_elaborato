@@ -32,6 +32,7 @@ public:
 
     std::string GetName() const;
     void update(std::shared_ptr<List> list) const;
+    void ShareListWithUser(std::shared_ptr<User> user, std::shared_ptr<List> list);
 };
 
 #endif //ELABORATO12_USER_H

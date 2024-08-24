@@ -13,7 +13,7 @@ void User::AddItemToList(const std::string& listName, const Item& item) {
     if (lists.find(listName) != lists.end()) {
         lists[listName]->AddItem(item);
     } else {
-        std::cerr << "List not found: " << listName << std::endl;
+        std::cerr << "Lista non trovata: " << listName << std::endl;
     }
 }
 
@@ -21,12 +21,12 @@ void User::RemoveItemFromList(const std::string& listName, const std::string& it
     if (lists.find(listName) != lists.end()) {
         lists[listName]->RemoveItem(itemName);
     } else {
-        std::cerr << "List not found: " << listName << std::endl;
+        std::cerr << "Lista non trovata: " << listName << std::endl;
     }
 }
 
 void User::ShowShoppingLists() const {
-    std::cout << "User: " << name << " has the following shopping lists:" << std::endl;
+    std::cout << "User: " << name << " ha le seguenti liste:" << std::endl;
     for (const auto& pair : lists) {
         std::cout << "- " << pair.first << std::endl;
         pair.second->ListItems();
@@ -48,4 +48,8 @@ void User::update(std::shared_ptr<List> list)const{
     std::cout<<"Oggetti da comprare: "<<list->GetTotalItems()<<std::endl;
     list->ListItems();
 
+}
+void User::ShareListWithUser(std::shared_ptr<User> user, std::shared_ptr<List> list){
+    user->AttachToList(list);
+    std::cout<<"Lista: "<<list->GetListName()<<" condivisa con "<<user->GetName()<<std::endl;
 }
