@@ -4,6 +4,7 @@
 #include "List.h"
 #include <algorithm>
 #include <iostream>
+#include"User.h"
 
 void List::notify() {
     for (const auto& itr : observers) {

@@ -10,7 +10,7 @@
 #include <memory>
 #include "Subject.h"
 
-#include"User.h"
+class User;
 
 class List: public Subject{
 private:

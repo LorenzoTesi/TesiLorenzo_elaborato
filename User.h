@@ -5,12 +5,13 @@
 #ifndef ELABORATO12_USER_H
 #define ELABORATO12_USER_H
 
+
 #include <string>
 #include <map>
 #include <memory>
-#include "List.h"
+#include "Item.h"
 
-
+class List;
 
 class User{
 private:
@@ -31,7 +32,7 @@ public:
     std::shared_ptr<List> GetList(const std::string& listName) const;
 
     std::string GetName() const;
-    void update(std::shared_ptr<List> list) const;
+    void update(List* list) const;
     void ShareListWithUser(std::shared_ptr<User> user, std::shared_ptr<List> list);
 };
 

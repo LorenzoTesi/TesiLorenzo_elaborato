@@ -3,6 +3,7 @@
 //
 #include "User.h"
 #include <iostream>
+#include "List.h"
 
 void User::CreateShoppingList(const std::string& listName) {
     auto list = std::make_shared<List>(listName);
@@ -43,7 +44,7 @@ std::shared_ptr<List> User::GetList(const std::string& listName) const {
 std::string User::GetName() const{
     return name;
 }
-void User::update(std::shared_ptr<List> list)const{
+void User::update(List* list)const{
     std::cout<<"La lista: "<<list->GetListName()<<" è stata modificata, ora è:"<<std::endl;
     std::cout<<"Oggetti da comprare: "<<list->GetTotalItems()<<std::endl;
     list->ListItems();
