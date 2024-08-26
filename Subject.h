@@ -5,14 +5,11 @@
 #ifndef ELABORATO12_SUBJECT_H
 #define ELABORATO12_SUBJECT_H
 
-
-#include <vector>
-#include<memory>
 class Subject {
 public:
 
     virtual void notify() = 0;
-    virtual ~Subject();
+    virtual ~Subject()=default;
 };
 
 #endif //ELABORATO12_SUBJECT_H

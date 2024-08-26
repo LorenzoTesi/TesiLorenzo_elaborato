@@ -8,7 +8,7 @@
 
 void List::notify() {
     for (const auto& itr : observers) {
-        itr->update(this);
+        itr->update(GetListName());
     }
 }
 void List::AddItem(const Item& item) {
@@ -18,8 +18,7 @@ void List::AddItem(const Item& item) {
 
 void List::RemoveItem(const std::string& itemName) {
     items.erase(std::remove_if(items.begin(), items.end(),
-                               [&](const Item& item) { return item.GetName() == itemName; }),
-                items.end());
+                               [&](const Item& item) { return item.GetName() == itemName; }),items.end());
     notify();
 }
 
@@ -34,6 +33,7 @@ void List::UpdateItemQuantity(const std::string& itemName, int quantity) {
 }
 
 void List::ListItems() const {
+    std::cout<<"Oggetti da comprare: "<<GetTotalItems()<<std::endl;
     for (const auto& item : items) {
         std::cout << "Oggetto: " << item.GetName()
                   << ", Categoria: "<<item.GetCategory()
@@ -48,9 +48,6 @@ void List::attach(std::shared_ptr<User> observer) {
     observers.push_back(observer);
 }
 
-void List::detach(std::shared_ptr<User> observer) {
-    observers.erase(std::remove(observers.begin(), observers.end(), observer), observers.end());
-}
 int List::GetTotalItems()const{
     int count=0;
     for(auto itr:items)

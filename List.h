@@ -25,7 +25,6 @@ public:
     void ListItems() const;
     std::string GetListName()const;
     void attach(std::shared_ptr<User> observer);
-    void detach(std::shared_ptr<User> observer);
     void notify() override;
     int GetTotalItems() const;
 };
