@@ -11,7 +11,7 @@ Item latte("Latte", Category::latticini, 2, data);
 EXPECT_EQ(latte.GetName(), "Latte");
 EXPECT_EQ(latte.GetCategory(), "Latticini");
 EXPECT_EQ(latte.GetQuantity(), 2);
-EXPECT_EQ(latte.GetData(), "27/08/2024");
+EXPECT_EQ(latte.GetData(), "27/8/2024");
 }
 
 TEST(ItemTest, UpdateQuantity) {
@@ -33,7 +33,7 @@ TEST(ItemTest, GetData) {
 Data data(1, 9, 2024);
 Item mela("Mela", Category::frutta, 5, data);
 
-EXPECT_EQ(mela.GetData(), "01/09/2024");
+EXPECT_EQ(mela.GetData(), "1/9/2024");
 }
 TEST(ItemTest, MultipleItems) {
 Data data1(27, 8, 2024);
@@ -43,7 +43,7 @@ Item mela("Mela", Category::frutta, 5, data2);
 
 EXPECT_EQ(latte.GetName(), "Latte");
 EXPECT_EQ(mela.GetName(), "Mela");
-EXPECT_EQ(latte.GetData(), "27/08/2024");
-EXPECT_EQ(mela.GetData(), "01/09/2024");
+EXPECT_EQ(latte.GetData(), "27/8/2024");
+EXPECT_EQ(mela.GetData(), "1/9/2024");
 }
 

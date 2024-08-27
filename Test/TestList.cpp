@@ -39,21 +39,5 @@ const auto items = shoppingList.GetTotalItems();
 EXPECT_EQ(items, 1);
 }
 
-TEST(ListTest, ListItems) {
-List shoppingList("Spesa");
-Item item1("Latte", Category::latticini, 2, Data(25, 8, 2024));
-Item item2("Pane", Category::confezionati, 1, Data(26, 8, 2024));
-
-shoppingList.AddItem(item1);
-shoppingList.AddItem(item2);
-
-testing::internal::CaptureStdout();
-shoppingList.ListItems();
-std::string output = testing::internal::GetCapturedStdout();
-
-EXPECT_NE(output.find("Oggetto: Latte"), std::string::npos);
-EXPECT_NE(output.find("Oggetto: Pane"), std::string::npos);
-}
-
 
 

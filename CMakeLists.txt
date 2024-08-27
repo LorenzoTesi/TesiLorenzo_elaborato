@@ -1,13 +1,13 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.18)
 project(Elaborato12)
-set(CMAKE_CXX_STANDARD 17)
+
+set(CXX_STANDARD 11)
 
 add_subdirectory(Test)
 
-set(SOURCE_FILES  Item.cpp Item.h List.cpp List.h User.cpp User.h Data.h Subject.h)
-add_executable(Elaborato12 main.cpp)
-
-add_library(core ${SOURCE_FILES})
-target_link_libraries(Elaborato12 core)
+set(SOURCE_FILES Subject.h Data.h Item.h Item.cpp List.h List.cpp User.h User.cpp)
+add_executable(${CMAKE_PROJECT_NAME} main.cpp)
+add_library(${CMAKE_PROJECT_NAME}_lib ${SOURCE_FILES})
+target_link_libraries(${CMAKE_PROJECT_NAME} ${CMAKE_PROJECT_NAME}_lib)
 
 
