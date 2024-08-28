@@ -3,7 +3,7 @@
 9817	14446	7465750090585622	Test/CMakeFiles/runTests.dir/TestItem.cpp.obj	b65ee469c9522161
 14447	19801	7465750143804126	Test/CMakeFiles/runTests.dir/TestUser.cpp.obj	c32a905f1b79e3c8
 24304	46222	7465750407940698	Test/lib/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.obj	dbab6dbcde7acaf9
-20	9057	7465771947919689	Test/runTests.exe	a0a0fa80b2eb0274
+7171	12824	7465774448469556	Test/runTests.exe	73426e2c8be8c332
 19803	24303	7465750189198793	Test/CMakeFiles/runTests.dir/TestList.cpp.obj	1a1e8e3ec153b0fb
 54407	54804	7465750493737013	Test/lib/googletest/libgtest_maind.a	eed9af15aafd856b
 50236	54406	7465750489663634	Test/lib/googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.obj	d14645582ebc22b9
@@ -14,4 +14,9 @@
 8237	11283	7465767184728389	CMakeFiles/core.dir/User.cpp.obj	e64974dbf275f7f2
 11284	11769	7465767189491094	libcore.a	caebd73ab93fdcff
 23	7169	7465774391068586	Test/CMakeFiles/runTests.dir/runAllTests.cpp.obj	f45790cdd56ac6da
-7171	12824	7465774448469556	Test/runTests.exe	73426e2c8be8c332
+72	3204	7465794852662141	CMakeFiles/core.dir/Item.cpp.obj	8ce691a7af20bd9
+3205	6432	7465794885030654	CMakeFiles/core.dir/User.cpp.obj	e64974dbf275f7f2
+6433	10388	7465794924536467	CMakeFiles/core.dir/List.cpp.obj	cf4063d389e0d925
+10389	11008	7465794930710723	libcore.a	caebd73ab93fdcff
+11009	16088	7465794981367027	Test/CMakeFiles/runTests.dir/runAllTest.cpp.obj	4035216a0ee7b07c
+16089	22013	7465795040102595	Test/runTests.exe	bde4422df767af3c
