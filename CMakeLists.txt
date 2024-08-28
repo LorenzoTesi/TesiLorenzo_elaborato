@@ -7,7 +7,7 @@ add_subdirectory(Test)
 
 set(SOURCE_FILES Subject.h Data.h Item.h Item.cpp List.h List.cpp User.h User.cpp)
 add_executable(${CMAKE_PROJECT_NAME} main.cpp)
-add_library(${CMAKE_PROJECT_NAME}_lib ${SOURCE_FILES})
-target_link_libraries(${CMAKE_PROJECT_NAME} ${CMAKE_PROJECT_NAME}_lib)
+add_library(core ${SOURCE_FILES})
+target_link_libraries(${CMAKE_PROJECT_NAME} core)
 
 
