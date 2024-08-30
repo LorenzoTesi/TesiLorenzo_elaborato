@@ -8,11 +8,12 @@
 
 void List::notify() {
     for (const auto& itr : observers) {
-        itr->update(GetListName());
+        itr->Update(GetListName());
     }
 }
 void List::AddItem(const Item& item) {
-    items.push_back(item);
+    auto key=item.GetName();
+    items[key]=item;
     notify();
 }
 
@@ -47,8 +48,12 @@ void List::ListItems() const {
 std::string List::GetListName() const{
     return name;
 }
-void List::attach(std::shared_ptr<User> observer) {
-    observers.push_back(observer);
+void List::attach(Observer*o) {
+    observers.push_back(o);
+}
+void List::detach(Observer *o) {
+    auto obs=observers.find(o);
+    observers.erase(obs);
 }
 
 int List::GetTotalItems()const{
@@ -64,7 +69,4 @@ int List::GetItemstoBuy()const{
             count++;
     }
     return count;
-}
-std::string List::Buy()const{
-
 }

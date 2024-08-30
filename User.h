@@ -10,10 +10,11 @@
 #include <map>
 #include <memory>
 #include "Item.h"
+#include "Observer.h"
 
 class List;
 
-class User{
+class User:public Observer{
 private:
     std::string name;
     std::map<std::string, std::shared_ptr<List>> lists;
@@ -32,7 +33,7 @@ public:
     void UpdateQuantity(const std::string& listname,const std::string& itemname,const int &quantity);
 
     std::string GetName() const;
-    void update(const std::string& listname) const;
+    void Update(const std::string &listname)override;
     void ShareListWithUser(std::shared_ptr<User> user, const std::string&name);
 };
 
