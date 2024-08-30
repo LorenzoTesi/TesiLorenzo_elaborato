@@ -17,15 +17,15 @@ void List::AddItem(const Item& item) {
 }
 
 void List::RemoveItem(const std::string& itemName) {
-    items.erase(std::remove_if(items.begin(), items.end(),
-                               [&](const Item& item) { return item.GetName() == itemName; }),items.end());
+    auto item=items.find(itemName);
+    items.erase(item);
     notify();
 }
 
 void List::UpdateItemQuantity(const std::string& itemName, int quantity) {
     for (auto& item : items) {
-        if (item.GetName() == itemName) {
-            item.SetQuantity(quantity);
+        if (item.second.GetName() == itemName) {
+            item.second.SetQuantity(quantity);
             notify();
             break;
         }
@@ -33,12 +33,15 @@ void List::UpdateItemQuantity(const std::string& itemName, int quantity) {
 }
 
 void List::ListItems() const {
-    std::cout<<"Oggetti da comprare: "<<GetTotalItems()<<std::endl;
+    std::cout<<"Oggetti totali: "<<GetTotalItems()<<std::endl;
+    std::cout<<"Oggetti non comprati"<<GetItemstoBuy()<<std::endl;
     for (const auto& item : items) {
-        std::cout << "Oggetto: " << item.GetName()
-                  << ", Categoria: "<<item.GetCategory()
-                  << ", Quantità: " << item.GetQuantity()
-                  << ", Da consumare entro: " << item.GetData() << std::endl;
+        std::cout << "Oggetto: " << item.second.GetName()
+                  << ", Categoria: "<<item.second.GetCategory()
+                  << ", Quantità: " << item.second.GetQuantity()
+                  << ", Da consumare entro: " << item.second.GetData()
+                  << item.second.GetState()
+                  << std::endl;
     }
 }
 std::string List::GetListName() const{
@@ -53,4 +56,15 @@ int List::GetTotalItems()const{
     for(auto itr:items)
         count++;
     return count;
+}
+int List::GetItemstoBuy()const{
+    int count=0;
+    for(auto itr:items){
+        if (!itr.second.IsBought())
+            count++;
+    }
+    return count;
+}
+std::string List::Buy()const{
+
 }

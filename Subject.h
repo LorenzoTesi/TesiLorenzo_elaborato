@@ -5,11 +5,16 @@
 #ifndef ELABORATO12_SUBJECT_H
 #define ELABORATO12_SUBJECT_H
 
+#include "Observer.h"
 class Subject {
+private:
+
 public:
 
     virtual void notify() = 0;
     virtual ~Subject()=default;
+    virtual void attach(Observer*o)=0;
+    virtual void detach(Observer*o)=0;
 };
 
 #endif //ELABORATO12_SUBJECT_H

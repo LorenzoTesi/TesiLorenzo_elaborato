@@ -4,7 +4,7 @@
 #include "Item.h"
 
 Item::Item(const std::string& name, enum Category category, int quantity, const Data& data)
-        : name(name), category(category), quantity(quantity), data(data) {}
+        : name(name), category(category), quantity(quantity), data(data), bought(false) {}
 
 std::string Item::GetName() const {
     return name;
@@ -33,4 +33,10 @@ void Item::SetQuantity(int quantity) {
 
 std::string Item::GetData() const {
     return data.GetData();
+}
+bool Item::IsBought() const {
+    return bought;
+}
+std::string Item::GetState() const{
+    return bought?"Già comprato","Da comprare";
 }

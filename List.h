@@ -6,7 +6,8 @@
 #define ELABORATO12_LIST_H
 
 #include "Item.h"
-#include <vector>
+#include <list>
+#include "map"
 #include <memory>
 #include "Subject.h"
 
@@ -14,9 +15,9 @@ class User;
 
 class List: public Subject{
 private:
-    std::vector<Item> items;
+    std::map<std::string, Item> items;
     std::string name;
-    std::vector<std::shared_ptr<User>> observers;
+    std::list<Observer> observers;
 public:
     List(const std::string&listname ):name(listname){};
     void AddItem(const Item& item);
@@ -27,6 +28,8 @@ public:
     void attach(std::shared_ptr<User> observer);
     void notify() override;
     int GetTotalItems() const;
+    int GetItemstoBuy()const;
+
 };
 
 #endif //ELABORATO12_LIST_H

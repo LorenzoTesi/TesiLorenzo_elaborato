@@ -25,6 +25,7 @@ private:
     Category category;
     int quantity;
     Data data;
+    bool bought;
 
 public:
     Item(const std::string& name, enum Category category, int quantity, const Data& data);
@@ -34,6 +35,8 @@ public:
     int GetQuantity() const;
     void SetQuantity(int quantity);
     std::string GetData()const;
+    bool IsBought()const;
+    std::string GetState()const;
 };
 
 #endif //ELABORATO12_ITEM_H
