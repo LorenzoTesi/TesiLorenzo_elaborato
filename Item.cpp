@@ -3,17 +3,14 @@
 //
 #include "Item.h"
 
-Item::Item(const std::string& name, enum Category category, int quantity, const Data& data){
-    if(quantity<=0)
+Item::Item(const std::string& name, enum Category category, int quantity, const Data& data)
+        : name(name), category(category), quantity(quantity), data(data), bought(false)
+{
+    if (quantity <= 0) {
         throw std::invalid_argument("Inserire quantità positiva");
-    else{
-        this->name=name;
-        this->category=category;
-        this->data=data;
-        this->quantity=quantity;
-        this->bought=false;
     }
 }
+
 
 std::string Item::GetName() const {
     return name;
@@ -54,4 +51,7 @@ std::string Item::GetState() const{
         return "Già comprato";
     else
         return "Da comprare";
+}
+void Item::SetBought() {
+    bought=true;
 }

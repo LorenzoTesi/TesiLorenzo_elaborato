@@ -7,7 +7,6 @@
 
 #include "Observer.h"
 class Subject {
-private:
 
 public:
 

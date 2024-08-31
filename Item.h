@@ -29,6 +29,7 @@ private:
 
 public:
     Item(const std::string& name, enum Category category, int quantity, const Data& data);
+    Item() : name(""), category(Category::confezionati), quantity(0), data(Data(1, 1, 2000)), bought(false) {}
 
     std::string GetName() const;
     std::string GetCategory() const;
@@ -37,6 +38,7 @@ public:
     std::string GetData()const;
     bool IsBought()const;
     std::string GetState()const;
+    void SetBought();
 };
 
 #endif //ELABORATO12_ITEM_H

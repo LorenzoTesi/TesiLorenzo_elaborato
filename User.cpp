@@ -6,8 +6,12 @@
 #include "List.h"
 
 void User::CreateShoppingList(const std::string& listName) {
-    auto list = std::make_shared<List>(listName);
-    lists[listName] = list;
+    if(lists.find(listName)!=lists.end())
+        throw std::invalid_argument("Esiste già una lista con questo nome, per favore sceglierne un altro");
+    else {
+        auto list = std::make_shared<List>(listName);
+        lists[listName] = list;
+    }
 }
 
 void User::AddItemToList(const std::string& listName, const Item& item) {
@@ -28,9 +32,9 @@ void User::RemoveItemFromList(const std::string& listName, const std::string& it
 
 void User::ShowShoppingLists() const {
     std::cout << "User: " << name << " ha le seguenti liste:" << std::endl;
-    for (const auto& pair : lists) {
-        std::cout << "- " << pair.first << std::endl;
-        pair.second->ListItems();
+    for (const auto& itr : lists) {
+        std::cout << "- " << itr.first << std::endl;
+        itr.second->ListItems();
     }
 }
 
@@ -39,18 +43,20 @@ std::shared_ptr<List> User::GetList(const std::string& listName) const {
     if (it != lists.end()) {
         return it->second;
     }
-    return nullptr;
+    else {
+        throw std::invalid_argument("Non esiste una lista con questo nome");
+    }
 }
 std::string User::GetName() const{
     return name;
 }
-void User::update(const std::string&listname)const{
+void User::Update(const std::string &listname){
     auto list= GetList(listname);
     std::cout<<"La lista: "<<list->GetListName()<<" è stata modificata, ora è:"<<std::endl;
     list->ListItems();
 
 }
-void User::AttachToList(std::shared_ptr<User> self,std::shared_ptr<List> list) {
+void User::AttachToList(User*self,std::shared_ptr<List> list) {
     lists[list->GetListName()] = list;
     list->attach(self);
 }
@@ -60,8 +66,12 @@ void User::UpdateQuantity(const std::string& listname, const std::string &itemna
     list->UpdateItemQuantity(itemname,quantity);
 }
 
-void User::ShareListWithUser(std::shared_ptr<User> user, const std::string &listname){
+void User::ShareListWithUser(User*user, const std::string &listname){
     auto list= GetList(listname);
     user->AttachToList(user,list);
     std::cout<<"Lista: "<<list->GetListName()<<" , condivisa con "<<user->GetName()<<std::endl;
+}
+void User::SetItemBought(const std::string &listname, const std::string &itemname) {
+    auto list= GetList(listname);
+    list->SetItemBought(itemname);
 }

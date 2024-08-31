@@ -29,6 +29,7 @@ public:
     void notify() override;
     int GetTotalItems() const;
     int GetItemstoBuy()const;
+    void SetItemBought(const std::string &itemName);
 
 };
 

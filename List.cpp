@@ -2,7 +2,6 @@
 // Created by loren on 23/08/2024.
 //
 #include "List.h"
-#include <algorithm>
 #include <iostream>
 #include"User.h"
 
@@ -12,30 +11,42 @@ void List::notify() {
     }
 }
 void List::AddItem(const Item& item) {
-    auto key=item.GetName();
-    items[key]=item;
-    notify();
+    if(items.find(item.GetName()) == items.end()) {
+        items[item.GetName()] = item;
+        notify();
+    } else {
+        throw std::invalid_argument("Un oggetto con questo nome è già presente nella lista");
+    }
 }
 
+
 void List::RemoveItem(const std::string& itemName) {
-    auto item=items.find(itemName);
-    items.erase(item);
-    notify();
+    if(items.find(itemName)!=items.end()) {
+        auto item = items.find(itemName);
+        items.erase(item);
+        notify();
+    }
+    else
+        throw std::invalid_argument("Non esiste un oggetto con questo nome nella lista");
 }
 
 void List::UpdateItemQuantity(const std::string& itemName, int quantity) {
-    for (auto& item : items) {
-        if (item.second.GetName() == itemName) {
-            item.second.SetQuantity(quantity);
-            notify();
-            break;
+    if(items.find(itemName)!=items.end()) {
+        for (auto &item: items) {
+            if (item.second.GetName() == itemName) {
+                item.second.SetQuantity(quantity);
+                notify();
+                break;
+            }
         }
     }
+    else
+        throw std::invalid_argument("Non esiste un oggetto con questo nome nella lista");
 }
 
 void List::ListItems() const {
     std::cout<<"Oggetti totali: "<<GetTotalItems()<<std::endl;
-    std::cout<<"Oggetti non comprati"<<GetItemstoBuy()<<std::endl;
+    std::cout<<"Oggetti non comprati: "<<GetItemstoBuy()<<std::endl;
     for (const auto& item : items) {
         std::cout << "Oggetto: " << item.second.GetName()
                   << ", Categoria: "<<item.second.GetCategory()
@@ -52,8 +63,7 @@ void List::attach(Observer*o) {
     observers.push_back(o);
 }
 void List::detach(Observer *o) {
-    auto obs=observers.find(o);
-    observers.erase(obs);
+   observers.remove(o);
 }
 
 int List::GetTotalItems()const{
@@ -69,4 +79,17 @@ int List::GetItemstoBuy()const{
             count++;
     }
     return count;
+}
+void List::SetItemBought(const std::string &itemName) {
+    if(items.find(itemName)!=items.end()) {
+        for (auto &item: items) {
+            if (item.second.GetName() == itemName) {
+                item.second.SetBought();
+                notify();
+                break;
+            }
+        }
+    }
+    else
+        throw std::invalid_argument("Non esiste un oggetto con questo nome nella lista");
 }
