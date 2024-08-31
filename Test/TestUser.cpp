@@ -44,8 +44,8 @@ ASSERT_NE(list, nullptr);
 EXPECT_EQ(list->GetTotalItems(), 0);
 }
 TEST(UserTest, ShareListWithUser) {
-    auto Luca = std::make_shared<User>("Luca");
-    auto Mario = std::make_shared<User>("Mario");
+    auto Luca = new User("Luca");
+    auto Mario = new User("Mario");
 
     auto spesa = std::make_shared<List>("Spesa");
     spesa->AddItem(Item("Latte", Category::latticini, 2, Data(27, 8, 2024)));

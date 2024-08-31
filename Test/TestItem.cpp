@@ -4,6 +4,13 @@
 #include "gtest/gtest.h"
 #include "../Item.h"
 
+TEST(ItemTest, SetBought){
+    Item torta("Torta",Category::dolci,5,Data(3,5,2025));
+    EXPECT_EQ(torta.IsBought(), false);
+    torta.SetBought();
+    EXPECT_EQ(torta.IsBought(),true);
+}
+
 TEST(ItemTest, Creation) {
 Data data(27, 8, 2024);
 Item latte("Latte", Category::latticini, 2, data);
@@ -17,7 +24,7 @@ EXPECT_EQ(latte.GetData(), "27/8/2024");
 TEST(ItemTest, UpdateQuantity) {
 Data data(27, 8, 2024);
 Item pane("Pane", Category::confezionati, 3, data);
-
+EXPECT_EQ(pane.GetQuantity(),3);
 pane.SetQuantity(5);
 EXPECT_EQ(pane.GetQuantity(), 5);
 }
