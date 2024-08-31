@@ -8,8 +8,11 @@ TEST(ListTest, RemovingNoExistingItem){
     List list("spesa");
     Item mozzarella("Mozzarella",Category::latticini,5,Data(3,7,2024));
     list.AddItem(mozzarella);
+
     EXPECT_EQ(list.GetTotalItems(),1);
+
     list.RemoveItem("Bufala");
+
     EXPECT_EQ(list.GetTotalItems(),1);
 }
 
@@ -17,10 +20,28 @@ TEST(ListTest, AddingSameNameItem){
     List list("spesa");
     Item mozzarella("Mozzarella",Category::latticini,5,Data(3,7,2024));
     list.AddItem(mozzarella);
+
     Item mozzarella2("Mozzarella",Category::latticini, 2,Data(11,11,2024));
     list.AddItem(mozzarella2);
     EXPECT_EQ(list.GetTotalItems(),1);
 }
+
+TEST(ListTest, UpdatingNonExistentItem){
+    List list("spesa");
+    Item mozzarella("Mozzarella",Category::latticini,5,Data(3,7,2024));
+    list.AddItem(mozzarella);
+
+    list.UpdateItemQuantity("Bufala",10);
+}
+
+TEST(ListTest, SettingBoughtNonExistentItem){
+    List list("spesa");
+    Item mozzarella("Mozzarella",Category::latticini,5,Data(3,7,2024));
+    list.AddItem(mozzarella);
+
+    list.SetItemBought("Bufala");
+}
+
 
 TEST(ListTest, GetItemsToBuyAndSetBought){
     List list("spesa");
@@ -38,7 +59,6 @@ TEST(ListTest, GetItemsToBuyAndSetBought){
     EXPECT_EQ(list.GetItemstoBuy(),2);
     list.RemoveItem("Bistecca");
     EXPECT_EQ(list.GetItemstoBuy(),1);
-
 }
 
 TEST(ListTest, ConstructorAndGetListName) {
