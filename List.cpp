@@ -52,7 +52,7 @@ void List::ListItems() const {
                   << ", Categoria: "<<item.second.GetCategory()
                   << ", Quantità: " << item.second.GetQuantity()
                   << ", Da consumare entro: " << item.second.GetData()
-                  << item.second.GetState()
+                  << " "<<item.second.GetState()
                   << std::endl;
     }
 }

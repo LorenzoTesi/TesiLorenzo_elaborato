@@ -10,10 +10,8 @@ TEST(ListTest, RemovingNoExistingItem){
     list.AddItem(mozzarella);
 
     EXPECT_EQ(list.GetTotalItems(),1);
+    EXPECT_THROW(list.RemoveItem("Bufala"), std::invalid_argument);
 
-    list.RemoveItem("Bufala");
-
-    EXPECT_EQ(list.GetTotalItems(),1);
 }
 
 TEST(ListTest, AddingSameNameItem){
@@ -22,8 +20,7 @@ TEST(ListTest, AddingSameNameItem){
     list.AddItem(mozzarella);
 
     Item mozzarella2("Mozzarella",Category::latticini, 2,Data(11,11,2024));
-    list.AddItem(mozzarella2);
-    EXPECT_EQ(list.GetTotalItems(),1);
+    EXPECT_THROW(list.AddItem(mozzarella2), std::invalid_argument);
 }
 
 TEST(ListTest, UpdatingNonExistentItem){
@@ -31,7 +28,7 @@ TEST(ListTest, UpdatingNonExistentItem){
     Item mozzarella("Mozzarella",Category::latticini,5,Data(3,7,2024));
     list.AddItem(mozzarella);
 
-    list.UpdateItemQuantity("Bufala",10);
+    EXPECT_THROW(list.UpdateItemQuantity("Bufala",10), std::invalid_argument);
 }
 
 TEST(ListTest, SettingBoughtNonExistentItem){
@@ -39,7 +36,8 @@ TEST(ListTest, SettingBoughtNonExistentItem){
     Item mozzarella("Mozzarella",Category::latticini,5,Data(3,7,2024));
     list.AddItem(mozzarella);
 
-    list.SetItemBought("Bufala");
+    EXPECT_THROW(list.SetItemBought("Bufala"), std::invalid_argument);
+
 }
 
 
@@ -69,6 +67,7 @@ EXPECT_EQ(shoppingList.GetListName(), "Spesa");
 TEST(ListTest, AddItem) {
 List shoppingList("Spesa");
 Item item("Latte", Category::latticini, 2, Data(25, 8, 2024));
+
 EXPECT_EQ(shoppingList.GetTotalItems(),0);
 shoppingList.AddItem(item);
 EXPECT_EQ(shoppingList.GetTotalItems(), 1);
@@ -76,9 +75,8 @@ EXPECT_EQ(shoppingList.GetTotalItems(), 1);
 
 TEST(ListTest, RemoveItem) {
 List shoppingList("Spesa");
-Item item("Latte", Category::latticini, 2, Data(25, 8, 2024));
-
-shoppingList.AddItem(item);
+Item latte("Latte", Category::latticini, 2, Data(25, 8, 2024));
+shoppingList.AddItem(latte);
 EXPECT_EQ(shoppingList.GetTotalItems(),1);
 shoppingList.RemoveItem("Latte");
 EXPECT_EQ(shoppingList.GetTotalItems(), 0);

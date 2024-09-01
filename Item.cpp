@@ -33,9 +33,9 @@ int Item::GetQuantity() const {
     return quantity;
 }
 
-void Item::SetQuantity(int quantity) {
-    if(quantity>0)
-    this->quantity = quantity;
+void Item::SetQuantity(int qty) {
+    if(qty>0)
+    quantity = qty;
     else
         throw std::invalid_argument("Inserire una quantità positiva");
 }

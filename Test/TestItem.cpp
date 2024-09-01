@@ -20,6 +20,18 @@ EXPECT_EQ(latte.GetCategory(), "Latticini");
 EXPECT_EQ(latte.GetQuantity(), 2);
 EXPECT_EQ(latte.GetData(), "27/8/2024");
 }
+TEST(ItemTest, InvalidDay){
+
+     Item pane("Pane",Category::confezionati, 3,Data(50,2,2025));
+}
+TEST(ItemTest, InvalidMonth){
+
+    Item pane("Pane",Category::confezionati, 3,Data(5,200,2025));
+}
+TEST(ItemTest, InvalidYear){
+
+    Item pane("Pane",Category::confezionati, 3,Data(50,2,2000));
+}
 
 TEST(ItemTest, UpdateQuantity) {
 Data data(27, 8, 2024);
@@ -27,6 +39,12 @@ Item pane("Pane", Category::confezionati, 3, data);
 EXPECT_EQ(pane.GetQuantity(),3);
 pane.SetQuantity(5);
 EXPECT_EQ(pane.GetQuantity(), 5);
+}
+
+TEST(ItemTest, UpdateToInvalidQuantity){
+    Item pane("Pane", Category::confezionati, 3, Data(27,8,2024));
+    EXPECT_EQ(pane.GetQuantity(),3);
+    EXPECT_THROW(pane.SetQuantity(-10), std::invalid_argument);
 }
 
 TEST(ItemTest, GetCategory) {

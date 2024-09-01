@@ -16,12 +16,17 @@ public:
             if((a % 4 == 0 && a % 100 != 0) or (a % 400 == 0)){
                 days[1]=29;
             }
-            if(m>12 or m<0 or g>days[m-1] or g<0)
-                throw std::invalid_argument("Data non valida");
-        }
+            if(m>12 or m<0 )
+                throw std::invalid_argument("Mese non valido");
+            if(g>days[m-1] or g<0)
+                throw std::invalid_argument("Giorno non valido");
+
         giorno=g;
         mese=m;
         anno=a;
+        }
+        else
+            throw std::invalid_argument("Anno non valido");
     }
     std::string GetData() const{
         return std::to_string(giorno) + "/" + std::to_string(mese) + "/" + std::to_string(anno);

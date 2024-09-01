@@ -18,7 +18,7 @@ void User::AddItemToList(const std::string& listName, const Item& item) {
     if (lists.find(listName) != lists.end()) {
         lists[listName]->AddItem(item);
     } else {
-        std::cerr << "Lista non trovata: " << listName << std::endl;
+        throw std::invalid_argument("Lista non trovata");
     }
 }
 
@@ -26,7 +26,7 @@ void User::RemoveItemFromList(const std::string& listName, const std::string& it
     if (lists.find(listName) != lists.end()) {
         lists[listName]->RemoveItem(itemName);
     } else {
-        std::cerr << "Lista non trovata: " << listName << std::endl;
+        throw std::invalid_argument("Lista non trovata");
     }
 }
 
@@ -56,14 +56,22 @@ void User::Update(const std::string &listname){
     list->ListItems();
 
 }
-void User::AttachToList(User*self,std::shared_ptr<List> list) {
-    lists[list->GetListName()] = list;
-    list->attach(self);
-}
 
 void User::UpdateQuantity(const std::string& listname, const std::string &itemname, const int &quantity) {
     auto list= GetList(listname);
     list->UpdateItemQuantity(itemname,quantity);
+}
+
+void User::AttachToList(User*self,std::shared_ptr<List> list) {
+    auto listname=list->GetListName();
+    if(lists.find(listname)==lists.end()){
+        lists[listname] = list;
+        list->attach(self);
+    }
+    else{
+        throw std::invalid_argument("Esiste già una lista con questo nome");
+    }
+
 }
 
 void User::ShareListWithUser(User*user, const std::string &listname){
