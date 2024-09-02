@@ -2,7 +2,7 @@
 // Created by loren on 22/08/2024.
 //
 #include "Item.h"
-
+#include <iostream>
 Item::Item(const std::string& name, enum Category category, int quantity, const Data& data)
         : name(name), category(category), quantity(quantity), data(data), bought(false)
 {
@@ -36,8 +36,9 @@ int Item::GetQuantity() const {
 void Item::SetQuantity(int qty) {
     if(qty>0)
     quantity = qty;
-    else
+    else {
         throw std::invalid_argument("Inserire una quantità positiva");
+    }
 }
 
 std::string Item::GetData() const {
@@ -53,5 +54,9 @@ std::string Item::GetState() const{
         return "Da comprare";
 }
 void Item::SetBought() {
-    bought=true;
+    if(!bought)
+        bought=true;
+    else {
+        throw std::invalid_argument("Questo oggetto è già stato comprato");
+    }
 }

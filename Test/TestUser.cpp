@@ -5,6 +5,41 @@
 #include "../User.h"
 #include "../List.h"
 
+TEST(UserTest, SettingBoughtAlreadyBoughtItem){
+    User Luca("Luca");
+
+    Luca.CreateShoppingList("Casa");
+    Luca.AddItemToList("Casa",Item("Tonno",Category::pesce, 4,Data(2,2,2024)));
+    Luca.AddItemToList("Casa",Item("Sgombro",Category::pesce, 4,Data(2,2,2024)));
+    Luca.AddItemToList("Casa",Item("Merluzzo",Category::pesce, 4,Data(2,2,2024)));
+
+    EXPECT_EQ(Luca.GetList("Casa")->GetItemstoBuy(),3);
+
+    Luca.SetItemBought("Casa","Tonno");
+    EXPECT_EQ(Luca.GetList("Casa")->GetItemstoBuy(),2);
+
+    EXPECT_THROW(Luca.SetItemBought("Casa","Tonno"), std::invalid_argument);
+}
+
+
+
+TEST(UserTest, UpdatingNoExistentItem){
+    User Luca("Luca");
+
+    Luca.CreateShoppingList("Casa");
+    Luca.AddItemToList("Casa",Item("Tonno",Category::pesce, 4,Data(2,2,2024)));
+    Luca.AddItemToList("Casa",Item("Sgombro",Category::pesce, 4,Data(2,2,2024)));
+    Luca.AddItemToList("Casa",Item("Merluzzo",Category::pesce, 4,Data(2,2,2024)));
+
+    EXPECT_EQ(Luca.GetList("Casa")->GetItemstoBuy(),3);
+    Luca.SetItemBought("Casa","Tonno");
+
+    EXPECT_EQ(Luca.GetList("Casa")->GetItemstoBuy(),2);
+
+    EXPECT_THROW(Luca.SetItemBought("Casa","Sardine"),std::invalid_argument);
+    Luca.ShowShoppingLists();
+}
+
 TEST(UserTest, SharingListWithSameName){
     User* Luca=new User("Luca");
     User* Mario= new User("Mario");
@@ -86,7 +121,22 @@ TEST(UserTest, ShareListWithUser) {
 
     Mario->AddItemToList("Spesa", Item("Brioche", Category::confezionati, 1, Data(28, 8, 2024)));
     EXPECT_EQ(Luca->GetList("Spesa")->GetTotalItems(), 3);
+    Mario->ShowShoppingLists();
     Mario->RemoveItemFromList("Spesa","Pane");
     EXPECT_EQ(Mario->GetList("Spesa")->GetTotalItems(),2);
-    Mario->ShowShoppingLists();
+
+}
+
+TEST(UserTest, ShowMultipleLists){
+    User Luca("Luca");
+    Luca.CreateShoppingList("Spesa");
+    Luca.CreateShoppingList("Casa");
+    Item Cavolo("Cavolo rosso",Category::verdura, 1,Data(10,9,2024));
+
+    Luca.AddItemToList("Casa",Cavolo);
+    Luca.AddItemToList("Spesa",Cavolo);
+    Luca.AddItemToList("Spesa",Item("Cioccolata",Category::dolci,4,Data(12,12,2024)));
+    Luca.ShowShoppingLists();
+    Luca.SetItemBought("Spesa","Cioccolata");
+
 }

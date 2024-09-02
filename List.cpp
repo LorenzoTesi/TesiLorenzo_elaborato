@@ -81,15 +81,11 @@ int List::GetItemstoBuy()const{
     return count;
 }
 void List::SetItemBought(const std::string &itemName) {
-    if(items.find(itemName)!=items.end()) {
-        for (auto &item: items) {
-            if (item.second.GetName() == itemName) {
-                item.second.SetBought();
-                notify();
-                break;
-            }
-        }
-    }
-    else
+    auto it = items.find(itemName);
+    if (it != items.end()) {
+        it->second.SetBought();
+        notify();
+    } else {
         throw std::invalid_argument("Non esiste un oggetto con questo nome nella lista");
+    }
 }

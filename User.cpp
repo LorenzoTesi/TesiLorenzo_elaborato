@@ -6,11 +6,13 @@
 #include "List.h"
 
 void User::CreateShoppingList(const std::string& listName) {
-    if(lists.find(listName)!=lists.end())
+    if(lists.find(listName)!=lists.end()) {
         throw std::invalid_argument("Esiste già una lista con questo nome, per favore sceglierne un altro");
+    }
     else {
         auto list = std::make_shared<List>(listName);
         lists[listName] = list;
+        list->attach(this);
     }
 }
 
