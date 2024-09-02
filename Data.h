@@ -20,7 +20,6 @@ public:
                 throw std::invalid_argument("Mese non valido");
             if(g>days[m-1] or g<0)
                 throw std::invalid_argument("Giorno non valido");
-
         giorno=g;
         mese=m;
         anno=a;
@@ -32,5 +31,4 @@ public:
         return std::to_string(giorno) + "/" + std::to_string(mese) + "/" + std::to_string(anno);
     }
 };
-
 #endif //ELABORATO12_DATA_H

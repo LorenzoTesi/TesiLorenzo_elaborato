@@ -2,20 +2,15 @@
 // Created by loren on 22/08/2024.
 //
 #include "Item.h"
-#include <iostream>
 Item::Item(const std::string& name, enum Category category, int quantity, const Data& data)
-        : name(name), category(category), quantity(quantity), data(data), bought(false)
-{
+        : name(name), category(category), quantity(quantity), data(data), bought(false) {
     if (quantity <= 0) {
         throw std::invalid_argument("Inserire quantità positiva");
     }
 }
-
-
 std::string Item::GetName() const {
     return name;
 }
-
 std::string Item::GetCategory() const {
     switch (category) {
         case Category::latticini:    return "Latticini";
@@ -28,35 +23,27 @@ std::string Item::GetCategory() const {
         default:                     return "Unknown";
     }
 }
-
 int Item::GetQuantity() const {
     return quantity;
 }
-
 void Item::SetQuantity(int qty) {
     if(qty>0)
     quantity = qty;
-    else {
+    else
         throw std::invalid_argument("Inserire una quantità positiva");
-    }
 }
-
 std::string Item::GetData() const {
     return data.GetData();
 }
 bool Item::IsBought() const {
     return bought;
 }
-std::string Item::GetState() const{
+std::string Item::GetState() const {
     if(bought)
         return "Già comprato";
     else
         return "Da comprare";
 }
 void Item::SetBought() {
-    if(!bought)
         bought=true;
-    else {
-        throw std::invalid_argument("Questo oggetto è già stato comprato");
-    }
 }

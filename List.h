@@ -30,7 +30,6 @@ public:
     int GetTotalItems() const;
     int GetItemstoBuy()const;
     void SetItemBought(const std::string &itemName);
-
 };
 
 #endif //ELABORATO12_LIST_H

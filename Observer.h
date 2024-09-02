@@ -5,7 +5,7 @@
 #ifndef ELABORATO12_OBSERVER_H
 #define ELABORATO12_OBSERVER_H
 
-class Observer{
+class Observer {
 public:
     virtual void Update(const std::string &listname)=0;
     ~Observer()=default;

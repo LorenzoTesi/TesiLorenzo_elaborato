@@ -14,12 +14,10 @@ void List::AddItem(const Item& item) {
     if(items.find(item.GetName()) == items.end()) {
         items[item.GetName()] = item;
         notify();
-    } else {
-        throw std::invalid_argument("Un oggetto con questo nome è già presente nella lista");
     }
+    else
+        throw std::invalid_argument("Un oggetto con questo nome è già presente nella lista");
 }
-
-
 void List::RemoveItem(const std::string& itemName) {
     if(items.find(itemName)!=items.end()) {
         auto item = items.find(itemName);
@@ -29,7 +27,6 @@ void List::RemoveItem(const std::string& itemName) {
     else
         throw std::invalid_argument("Non esiste un oggetto con questo nome nella lista");
 }
-
 void List::UpdateItemQuantity(const std::string& itemName, int quantity) {
     if(items.find(itemName)!=items.end()) {
         for (auto &item: items) {
@@ -43,7 +40,6 @@ void List::UpdateItemQuantity(const std::string& itemName, int quantity) {
     else
         throw std::invalid_argument("Non esiste un oggetto con questo nome nella lista");
 }
-
 void List::ListItems() const {
     std::cout<<"Oggetti totali: "<<GetTotalItems()<<std::endl;
     std::cout<<"Oggetti non comprati: "<<GetItemstoBuy()<<std::endl;
@@ -56,7 +52,7 @@ void List::ListItems() const {
                   << std::endl;
     }
 }
-std::string List::GetListName() const{
+std::string List::GetListName() const {
     return name;
 }
 void List::attach(Observer*o) {
@@ -65,16 +61,15 @@ void List::attach(Observer*o) {
 void List::detach(Observer *o) {
    observers.remove(o);
 }
-
-int List::GetTotalItems()const{
+int List::GetTotalItems() const {
     int count=0;
     for(auto itr:items)
         count++;
     return count;
 }
-int List::GetItemstoBuy()const{
+int List::GetItemstoBuy() const {
     int count=0;
-    for(auto itr:items){
+    for(auto itr:items) {
         if (!itr.second.IsBought())
             count++;
     }
@@ -83,9 +78,13 @@ int List::GetItemstoBuy()const{
 void List::SetItemBought(const std::string &itemName) {
     auto it = items.find(itemName);
     if (it != items.end()) {
-        it->second.SetBought();
-        notify();
-    } else {
-        throw std::invalid_argument("Non esiste un oggetto con questo nome nella lista");
+        if(!it->second.IsBought()) {
+            it->second.SetBought();
+            notify();
+        }
+        else
+            return;
     }
+    else
+        throw std::invalid_argument("Non esiste un oggetto con questo nome nella lista");
 }
