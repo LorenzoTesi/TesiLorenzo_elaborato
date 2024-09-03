@@ -5,6 +5,13 @@
 #include "../User.h"
 #include "../List.h"
 
+TEST(UserTest, UpdatingToSameQuantity){
+    User Luca("Luca");
+    Luca.CreateShoppingList("Casa");
+    Luca.AddItemToList("Casa",Item("Tonno",Category::pesce, 4,Data(2,2,2024)));
+    Luca.AddItemToList("Casa",Item("Sgombro",Category::pesce, 4,Data(2,2,2024)));
+    Luca.UpdateQuantity("Casa","Tonno",4);
+}
 TEST(UserTest, SettingBoughtAlreadyBoughtItem){
     User Luca("Luca");
     Luca.CreateShoppingList("Casa");

@@ -27,19 +27,20 @@ void List::RemoveItem(const std::string& itemName) {
     else
         throw std::invalid_argument("Non esiste un oggetto con questo nome nella lista");
 }
-void List::UpdateItemQuantity(const std::string& itemName, int quantity) {
-    if(items.find(itemName)!=items.end()) {
-        for (auto &item: items) {
-            if (item.second.GetName() == itemName) {
-                item.second.SetQuantity(quantity);
-                notify();
-                break;
-            }
+void List::UpdateItemQuantity(const std::string &itemName, int quantity) {
+    auto it = items.find(itemName);
+    if (it != items.end()) {
+        if(it->second.GetQuantity()!=quantity) {
+            it->second.SetQuantity(quantity);
+            notify();
         }
+        else
+            return;
     }
     else
         throw std::invalid_argument("Non esiste un oggetto con questo nome nella lista");
 }
+
 void List::ListItems() const {
     std::cout<<"Oggetti totali: "<<GetTotalItems()<<std::endl;
     std::cout<<"Oggetti non comprati: "<<GetItemstoBuy()<<std::endl;

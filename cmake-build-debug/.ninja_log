@@ -93,3 +93,11 @@
 15	2892	7469994342332672	CMakeFiles/core.dir/List.cpp.obj	cf4063d389e0d925
 2893	3291	7469994346342690	libcore.a	caebd73ab93fdcff
 3293	7256	7469994385872691	Test/runTests.exe	bde4422df767af3c
+33	4003	7470512789233997	CMakeFiles/core.dir/Item.cpp.obj	8ce691a7af20bd9
+4004	9666	7470512846863976	CMakeFiles/core.dir/User.cpp.obj	e64974dbf275f7f2
+9667	13978	7470512890373973	CMakeFiles/core.dir/List.cpp.obj	cf4063d389e0d925
+13979	14397	7470512894443975	libcore.a	caebd73ab93fdcff
+14398	17785	7470512928474263	Test/CMakeFiles/runTests.dir/TestItem.cpp.obj	b65ee469c9522161
+17787	21996	7470512970534259	Test/CMakeFiles/runTests.dir/TestUser.cpp.obj	c32a905f1b79e3c8
+21997	25814	7470513008744257	Test/CMakeFiles/runTests.dir/TestList.cpp.obj	1a1e8e3ec153b0fb
+25815	30196	7470513052280691	Test/runTests.exe	bde4422df767af3c

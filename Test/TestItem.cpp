@@ -13,7 +13,6 @@ TEST(ItemTest, SetBought){
 TEST(ItemTest, Creation) {
 Data data(27, 8, 2024);
 Item latte("Latte", Category::latticini, 2, data);
-
 EXPECT_EQ(latte.GetName(), "Latte");
 EXPECT_EQ(latte.GetCategory(), "Latticini");
 EXPECT_EQ(latte.GetQuantity(), 2);
