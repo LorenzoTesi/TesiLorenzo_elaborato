@@ -4,14 +4,12 @@
 
 #ifndef ELABORATO12_LIST_H
 #define ELABORATO12_LIST_H
-
 #include "Item.h"
 #include <list>
 #include <map>
 #include <memory>
 #include "Subject.h"
 #include"Observer.h"
-
 class List: public Subject{
 private:
     std::map<std::string, Item> items;
@@ -31,5 +29,4 @@ public:
     int GetItemstoBuy()const;
     void SetItemBought(const std::string &itemName);
 };
-
 #endif //ELABORATO12_LIST_H

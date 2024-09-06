@@ -9,9 +9,8 @@
 #include <memory>
 #include "Item.h"
 #include "Observer.h"
-
 class List;
-class User:public Observer{
+class User: public Observer{
 private:
     std::string name;
     std::map<std::string, std::shared_ptr<List>> lists;
@@ -29,5 +28,4 @@ public:
     void ShareListWithUser(User*user, const std::string&name);
     void SetItemBought(const std::string& listname, const std::string&itemname);
 };
-
 #endif //ELABORATO12_USER_H

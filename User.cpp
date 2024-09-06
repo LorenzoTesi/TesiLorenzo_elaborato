@@ -4,7 +4,6 @@
 #include "User.h"
 #include <iostream>
 #include "List.h"
-
 void User::CreateShoppingList(const std::string& listName) {
     if(lists.find(listName)!=lists.end())
         throw std::invalid_argument("Esiste già una lista con questo nome, per favore sceglierne un altro");
@@ -61,7 +60,7 @@ void User::AttachToList(User*self,std::shared_ptr<List> list) {
     else
         throw std::invalid_argument("Esiste già una lista con questo nome");
 }
-void User::ShareListWithUser(User*user, const std::string &listname){
+void User::ShareListWithUser(User*user, const std::string &listname) {
     auto list= GetList(listname);
     user->AttachToList(user,list);
     std::cout<<"Lista: "<<list->GetListName()<<" , condivisa con "<<user->GetName()<<std::endl;

@@ -4,9 +4,8 @@
 #include "Item.h"
 Item::Item(const std::string& name, enum Category category, int quantity, const Data& data)
         : name(name), category(category), quantity(quantity), data(data), bought(false) {
-    if (quantity <= 0) {
+    if (quantity <= 0)
         throw std::invalid_argument("Inserire quantità positiva");
-    }
 }
 std::string Item::GetName() const {
     return name;
@@ -28,7 +27,7 @@ int Item::GetQuantity() const {
 }
 void Item::SetQuantity(int qty) {
     if(qty>0)
-    quantity = qty;
+        quantity = qty;
     else
         throw std::invalid_argument("Inserire una quantità positiva");
 }

@@ -3,7 +3,6 @@
 //
 #include "gtest/gtest.h"
 #include "../List.h"
-
 TEST(ListTest, RemovingNoExistingItem){
     List list("spesa");
     Item mozzarella("Mozzarella",Category::latticini,5,Data(3,7,2024));
@@ -45,21 +44,21 @@ TEST(ListTest, GetItemsToBuyAndSetBought){
     EXPECT_EQ(list.GetItemstoBuy(),1);
 }
 TEST(ListTest, ConstructorAndGetListName) {
-List shoppingList("Spesa");
-EXPECT_EQ(shoppingList.GetListName(), "Spesa");
+    List shoppingList("Spesa");
+    EXPECT_EQ(shoppingList.GetListName(), "Spesa");
 }
 TEST(ListTest, AddItem) {
-List shoppingList("Spesa");
-Item item("Latte", Category::latticini, 2, Data(25, 8, 2024));
-EXPECT_EQ(shoppingList.GetTotalItems(),0);
-shoppingList.AddItem(item);
-EXPECT_EQ(shoppingList.GetTotalItems(), 1);
+    List shoppingList("Spesa");
+    Item item("Latte", Category::latticini, 2, Data(25, 8, 2024));
+    EXPECT_EQ(shoppingList.GetTotalItems(),0);
+    shoppingList.AddItem(item);
+    EXPECT_EQ(shoppingList.GetTotalItems(), 1);
 }
 TEST(ListTest, RemoveItem) {
-List shoppingList("Spesa");
-Item latte("Latte", Category::latticini, 2, Data(25, 8, 2024));
-shoppingList.AddItem(latte);
-EXPECT_EQ(shoppingList.GetTotalItems(),1);
-shoppingList.RemoveItem("Latte");
-EXPECT_EQ(shoppingList.GetTotalItems(), 0);
+    List shoppingList("Spesa");
+    Item latte("Latte", Category::latticini, 2, Data(25, 8, 2024));
+    shoppingList.AddItem(latte);
+    EXPECT_EQ(shoppingList.GetTotalItems(),1);
+    shoppingList.RemoveItem("Latte");
+    EXPECT_EQ(shoppingList.GetTotalItems(), 0);
 }

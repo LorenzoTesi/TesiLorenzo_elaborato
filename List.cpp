@@ -4,7 +4,6 @@
 #include "List.h"
 #include <iostream>
 #include"User.h"
-
 void List::notify() {
     for (const auto& itr : observers) {
         itr->Update(GetListName());
